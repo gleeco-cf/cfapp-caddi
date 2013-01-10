@@ -6,7 +6,7 @@
         "monetization",
         "ads"
         ],
-    "version": "0.0.2",
+    "version": "0.0.3",
     "category":"advertising",
     "contributors": [
         {
@@ -19,6 +19,11 @@
         "url" : "https://github.com/gleecology/cfapp-caddi.git"
      },
     "main" : "./public/javascripts/caddi.js",
+
+    "account": {
+        "callback_url": "https://gleeco.com/api/partners/cloudflare",
+        "user_fields": ["email"]
+    },
 
     "dependencies" : {
     },
@@ -48,6 +53,13 @@
            "Restrictions": "Use of the Slider is subject to approval. CloudFlare reserves the right to deny access due to misuse or abuse."
        },
        "interface": [
+          {
+              "type" : "string",
+              "id"   : "cfadpubid",
+              "name" : "Cloudflare Ad ID",
+              "domain_reqeust" : true,
+              
+          },
           {
             "id": "orient",
             "name": "Ad Orientation",
