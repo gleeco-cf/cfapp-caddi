@@ -57,7 +57,7 @@
               "type" : "string",
               "id"   : "cfadpubid",
               "name" : "Cloudflare Ad ID",
-              "domain_reqeust" : true,
+              "domain_reqeust" : true
               
           },
           {
