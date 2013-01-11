@@ -6,7 +6,7 @@
         "monetization",
         "ads"
         ],
-    "version": "0.0.3",
+    "version": "0.0.4",
     "category":"advertising",
     "contributors": [
         {
@@ -21,7 +21,7 @@
     "main" : "./public/javascripts/caddi.js",
 
     "account": {
-        "callback_url": "https://gleeco.com/api/partners/cloudflare",
+        "callback_url": "https://api.gleeco.com/api/partners/cloudflare/apps/slider",
         "user_fields": ["email"]
     },
 
@@ -54,8 +54,8 @@
        },
        "interface": [
           {
-              "type" : "string",
-              "id"   : "cfadpubid",
+              "type" : "hidden",
+              "id"   : "LYRM_id",
               "name" : "Cloudflare Ad ID",
               "domain_reqeust" : true
               
@@ -74,6 +74,7 @@
           },
 
           {
+            "domain_reqeust" : true,
             "id": "text_only",
             "name": "Ad Format",
             "description" : "Choose to display only static ads, or static and video ads",
