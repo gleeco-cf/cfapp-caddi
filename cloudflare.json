@@ -56,7 +56,8 @@
           {
               "type" : "hidden",
               "id"   : "LYRM_id",
-              "name" : "Cloudflare Ad ID",
+              "name" : "upon approval, CLoudFlare will issue a publisher advertising ID",
+              "value": "0",
               "domain_reqeust" : true
               
           },
