@@ -6,7 +6,7 @@
         "monetization",
         "ads"
         ],
-    "version": "0.0.7",
+    "version": "0.0.8",
     "category":"advertising",
     "contributors": [
         {
@@ -57,8 +57,8 @@
               "type" : "hidden",
               "id"   : "LYRM_id",
               "name" : "[a publisher id will be issued by CloudFlare]",
-              "value": "1001",
-              "domain_reqeust" : true
+              "value": "0",
+              "domain_request" : true
               
           },
           {
@@ -75,7 +75,7 @@
           },
 
           {
-            "domain_reqeust" : true,
+            "domain_request" : true,
             "id": "text_only",
             "name": "Ad Format",
             "description" : "Choose to display only static ads, or static and video ads",
