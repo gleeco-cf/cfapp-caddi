@@ -6,7 +6,7 @@
         "monetization",
         "ads"
         ],
-    "version": "0.0.5",
+    "version": "0.0.6",
     "category":"advertising",
     "contributors": [
         {
@@ -54,10 +54,10 @@
        },
        "interface": [
           {
-              "type" : "hidden",
+              "type" : "string",
               "id"   : "LYRM_id",
               "name" : "upon approval, CLoudFlare will issue a publisher advertising ID",
-              "value": "0",
+              "value": "1",
               "domain_reqeust" : true
               
           },
