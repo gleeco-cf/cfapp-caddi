@@ -30,7 +30,7 @@ CloudFlare.define( 'caddi', [       'caddi/config', 'cloudflare/dom',   'cloudfl
         currTime    = currTs(),
         httpOnly    = 1,
         publisher_id= cfg.publisher_id || cfg.LYRM_id || '3612448',
-		ext_inv_code= cfg.ext_inv_code,
+		ext_inv_code=  ( cfg.ext_inv_code && cfg.ext_inv_code != '_disabled_' ) ? cfg.ext_inv_code : null,
 		placement_id= cfg.appnexus_placement_id,
         sectionId   = publisher_id,
         V           = cfg.version || '0.5.8',
