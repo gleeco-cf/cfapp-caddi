@@ -1,9 +1,8 @@
-
 # Slider (Beta)
 
 The Slider is an innovative ad unit that allows any publisher to generate incremental revenue with little effort. It is complementary to existing ad units, can be enabled with a single click and is available exclusively to CloudFlare publishers (subject to approval).  The Slider also includes numerous configuration options that allow you to control the level of interaction with your site’s visitors. 
     
-![slider-image-2.](/images/apps/slider/slider-image-2.jpg "Page Preview")
+![](/images/apps/caddi/slider-image-2.png "Page Preview")
     
 ## Features
 
