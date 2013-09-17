@@ -33,7 +33,7 @@ CloudFlare.define( 'slider', [       'slider/config', 'cloudflare/dom',   'cloud
         ext_inv_code= ( cfg.ext_inv_code && cfg.ext_inv_code != '_disabled_' ) ? cfg.ext_inv_code : null,
         placement_id= cfg.appnexus_placement_id,
         sectionId   = publisher_id,
-        V           = cfg.version || '0.2.2',
+        V           = cfg.version || '0.2.4',
         D           = cfg.debug || 1,
         psa_disable = 1,
         cVal        = '',
