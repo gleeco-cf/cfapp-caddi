@@ -33,7 +33,7 @@ CloudFlare.define( 'caddi', [       'caddi/config', 'cloudflare/dom',   'cloudfl
         ext_inv_code= ( cfg.ext_inv_code && cfg.ext_inv_code != '_disabled_' ) ? cfg.ext_inv_code : null,
         placement_id= cfg.appnexus_placement_id,
         sectionId   = publisher_id,
-        V           = cfg.version || '0.2.0-DEVEL',
+        V           = cfg.version || '0.2.1',
         D           = cfg.debug || 1,
         psa_disable = 1,
         cVal        = '',
@@ -231,7 +231,7 @@ CloudFlare.define( 'caddi', [       'caddi/config', 'cloudflare/dom',   'cloudfl
                 if (D)  console.log('-- bailing out of minimizeOp; hover cancels and reschedules' );
                 timeoutId = setTimeout( minimizeOp, viewTTL );
                 return;
-            }        
+            }
 
             $(fr).animate( { width: '22px' } , 'slow', function(){ 
                 if (D)  console.log( 'installing hover handler....' );
@@ -243,8 +243,9 @@ CloudFlare.define( 'caddi', [       'caddi/config', 'cloudflare/dom',   'cloudfl
         },
         frLoad  = function(){ 
             if (D)  console.log( "  frame content is ready(?); dispatching owl viewTTL=" + viewTTL );
+
             if ( ! $(fr).length ){
-                if (D)  console.log('-- EMPTY IFRAME; exiting');
+                if (D)  console.log("-- EMPTY IFRAME; exiting");
                 removeOp();
                 return;
             }
