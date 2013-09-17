@@ -30,11 +30,12 @@ CloudFlare.define( 'caddi', [       'caddi/config', 'cloudflare/dom',   'cloudfl
         currTime    = currTs(),
         httpOnly    = 1,
         publisher_id= cfg.publisher_id || cfg.LYRM_id || '3612448',
-		ext_inv_code=  ( cfg.ext_inv_code && cfg.ext_inv_code != '_disabled_' ) ? cfg.ext_inv_code : null,
-		placement_id= cfg.appnexus_placement_id,
+        ext_inv_code= ( cfg.ext_inv_code && cfg.ext_inv_code != '_disabled_' ) ? cfg.ext_inv_code : null,
+        placement_id= cfg.appnexus_placement_id,
         sectionId   = publisher_id,
-        V           = cfg.version || '0.5.8',
+        V           = cfg.version || '0.2.0-DEVEL',
         D           = cfg.debug || 1,
+        psa_disable = 1,
         cVal        = '',
 
         installCookie = function(name,val,ttl) {
@@ -45,7 +46,7 @@ CloudFlare.define( 'caddi', [       'caddi/config', 'cloudflare/dom',   'cloudfl
             if (D) console.log( 'installCookie name=' + name + ' val=' + val );
             document.cookie = name + "=" + val + (ttl ? ";expires=" + exp.toUTCString() : '' );
         }, 
-    
+
         readCookieAttrs = function(str) {
             var C = {},
                 arr = str ? str.split(delim) : [];
@@ -170,17 +171,18 @@ CloudFlare.define( 'caddi', [       'caddi/config', 'cloudflare/dom',   'cloudfl
     if (D) console.log( "vars were set: isLeft=" + isLeft + ' isBottom=' + isBottom +  ' useScroll='+useScroll);
 
 
-		ext_inv_code= cfg.ext_inv_code,
-		placement_id= cfg.appnexus_placement_id,
 
     if ( placement_id && ext_inv_code ){
         iframe  = '<iframe id="'+f+'" FRAMEBORDER=0 MARGINWIDTH=0 MARGINHEIGHT=0 SCROLLING=NO WIDTH=300 HEIGHT=250 SRC="//ib.adnxs.com/tt?size=300x250' + 
             '&id=' + placement_id + 
             '&ext_inv_code=' + ext_inv_code + 
-                '"></iframe>',
+            ( ( isBottom && ! useScroll ) ? '' : '&position=above' ) + 
+            (  psa_disable ? '&psa=0' : '' ) +
+            '&referrer=' + location.host.toLowerCase() + 
+                '"></iframe>';
     }else{
         iframe  = '<IFRAME id="'+f+'" FRAMEBORDER=0 MARGINWIDTH=0 MARGINHEIGHT=0 SCROLLING=NO WIDTH=300 HEIGHT=250 SRC="//ad.yieldmanager.com/st?ad_type=iframe&ad_size=300x250&section=' + 
-                sectionId + '&pub_url=' + escape(location.href)  + '"></IFRAME>',
+                sectionId + '&pub_url=' + escape(location.href)  + '"></IFRAME>';
     }
 
     var timeoutId   = null,
@@ -201,7 +203,7 @@ CloudFlare.define( 'caddi', [       'caddi/config', 'cloudflare/dom',   'cloudfl
             window.clearTimeout(timeoutId);
             $(ar).remove();
             onIf = false;
-            cfOwl.dispatch( {action: 'close', orient: orient, c: cVal, lyrmid: cfg.LYRM_id, publisher_id: publisher_id });
+            cfOwl.dispatch( {action: 'close', orient: orient, c: cVal, lyrmid: cfg.LYRM_id, publisher_id: publisher_id, ext_inv_code: ext_inv_code, placement_id: placement_id });
         },
 
         maximizeOp = function(){
@@ -240,7 +242,12 @@ CloudFlare.define( 'caddi', [       'caddi/config', 'cloudflare/dom',   'cloudfl
             });
         },
         frLoad  = function(){ 
-            if (D)  console.log( "  frame content is ready; dispatching owl viewTTL=" + viewTTL );
+            if (D)  console.log( "  frame content is ready(?); dispatching owl viewTTL=" + viewTTL );
+            if ( ! $(fr).length ){
+                if (D)  console.log('-- EMPTY IFRAME; exiting');
+                removeOp();
+                return;
+            }
 
             if (viewTTL) { 
                 window.setTimeout( minimizeOp, viewTTL );
@@ -248,14 +255,14 @@ CloudFlare.define( 'caddi', [       'caddi/config', 'cloudflare/dom',   'cloudfl
 
             $(ar).delay(1600).animate( { width: fullWidth }, tx );
             $(xr).click( removeOp );
-            cfOwl.dispatch( { action: 'load', orient: orient, c: cVal, delay: delay, lyrmid: cfg.LYRM_id, publisher_id: publisher_id  });
+            cfOwl.dispatch( { action: 'load', orient: orient, c: cVal, delay: delay, lyrmid: cfg.LYRM_id, publisher_id: publisher_id, ext_inv_code: ext_inv_code, placement_id: placement_id });
 
             $(ar).hover( function(){ onIf = true; }, function(){ onIf = false; } );
 
             $(window).blur( function() {
                 if (D)  console.log( "  BLUR EVENT click=" + onIf  );
                 if( onIf ) {
-                    cfOwl.dispatch( {action: 'click', orient: orient, c: cVal, lyrmid: cfg.LYRM_id, publisher_id: publisher_id   });
+                    cfOwl.dispatch( {action: 'click', orient: orient, c: cVal, lyrmid: cfg.LYRM_id, publisher_id: publisher_id, ext_inv_code: ext_inv_code, placement_id: placement_id  });
                 }
             }); 
 
