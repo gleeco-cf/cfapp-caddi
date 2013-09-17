@@ -1,4 +1,4 @@
-CloudFlare.define( 'caddi', [       'caddi/config', 'cloudflare/dom',   'cloudflare/user',  'cloudflare/owl',       'cloudflare/jquery1.7',     'cloudflare/console' ], 
+CloudFlare.define( 'slider', [       'slider/config', 'cloudflare/dom',   'cloudflare/user',  'cloudflare/owl',       'cloudflare/jquery1.7',     'cloudflare/console' ], 
                             function(cfg,           dom,                user,               owl,                    jQuery,                     console ) {
     var $ = jQuery; 
 
@@ -33,7 +33,7 @@ CloudFlare.define( 'caddi', [       'caddi/config', 'cloudflare/dom',   'cloudfl
         ext_inv_code= ( cfg.ext_inv_code && cfg.ext_inv_code != '_disabled_' ) ? cfg.ext_inv_code : null,
         placement_id= cfg.appnexus_placement_id,
         sectionId   = publisher_id,
-        V           = cfg.version || '0.2.1',
+        V           = cfg.version || '0.2.2',
         D           = cfg.debug || 1,
         psa_disable = 1,
         cVal        = '',
@@ -77,7 +77,7 @@ CloudFlare.define( 'caddi', [       'caddi/config', 'cloudflare/dom',   'cloudfl
         useScroll   = cfg.scroll ? true : false,
         minRes      = ( cfg.min_resolution && cfg.min_resolution.indexOf('x') > 0 ) ?  cfg.min_resolution.split('x') : null,
 
-        cookieName  =  'cfapp_caddi',
+        cookieName  =  'cfapp_slider',
         cookie      =  readCookieAttrs( user.getCookie(cookieName) ),
         inSession   = (( currTime - cookie.sessionStart ) < sessionTTL ) ? 1 : 0,
         viewport    = dom.getViewport(),
@@ -86,7 +86,7 @@ CloudFlare.define( 'caddi', [       'caddi/config', 'cloudflare/dom',   'cloudfl
     /*
      * logic: eligibility, cookie, etc.
      */
-    if (D) console.log( "caddi starts; version="+V+"config:", cfg );
+    if (D) console.log( "slider starts; version="+V+"config:", cfg );
 
     cookie.N++;
 
@@ -138,7 +138,7 @@ CloudFlare.define( 'caddi', [       'caddi/config', 'cloudflare/dom',   'cloudfl
         return;
     }
 
-    var cfOwl           = owl.createDispatcher('caddi');
+    var cfOwl           = owl.createDispatcher('slider');
 
     if (D) console.log( 'owl created cfOwl' , cfOwl );
 
@@ -341,6 +341,6 @@ CloudFlare.define( 'caddi', [       'caddi/config', 'cloudflare/dom',   'cloudfl
         }
     });
 
-    if (D) console.log('caddi code complete' );
+    if (D) console.log('slider code complete' );
 
 } );
